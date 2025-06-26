@@ -1,72 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" default-locale="pl-PL">
   <info>
-    <title>Polish Geography Style - IGIGPUJ</title>
-    <id>http://www.zotero.org/styles/polish-geography-first-author-only</id>
-    <link href="http://www.zotero.org/styles/polish-geography-first-author-only" rel="self"/>
+    <title>Polish Geography Style - i in.</title>
+    <id>http://www.zotero.org/styles/polish-geography-i-in</id>
+    <link href="http://www.zotero.org/styles/polish-geography-i-in" rel="self"/>
     <author>
-      <name>Custom Polish Style</name>
+      <name>IGIGP Style</name>
     </author>
     <category citation-format="author-date"/>
     <category field="geography"/>
     <updated>2025-06-14T00:00:00+00:00</updated>
-    <summary>Polish citation style with first-author-only in-text citations.</summary>
+    <summary>Polish in-text citation style with "i" between two authors and "i in." for 3+ authors.</summary>
   </info>
 
-  <!-- Author macro -->
+  <!-- Makro: autor -->
   <macro name="author">
     <names variable="author">
       <name name-as-sort-order="first" initialize-with=". " delimiter=", " delimiter-precedes-last="never"/>
     </names>
   </macro>
 
-  <!-- Editor macro -->
+  <!-- Makro: redaktor -->
   <macro name="editor">
     <names variable="editor">
       <name initialize-with=". " delimiter=", " delimiter-precedes-last="never"/>
     </names>
   </macro>
 
-  <!-- Date -->
+  <!-- Makro: data -->
   <macro name="issued">
     <date variable="issued">
       <date-part name="year"/>
     </date>
   </macro>
 
-  <!-- Title -->
+  <!-- Makro: tytuł -->
   <macro name="title">
     <text variable="title"/>
   </macro>
 
-  <!-- Journal -->
+  <!-- Makro: czasopismo -->
   <macro name="container-title">
     <text variable="container-title"/>
   </macro>
 
-  <!-- Publisher -->
+  <!-- Makro: wydawnictwo -->
   <macro name="publisher">
     <text variable="publisher"/>
     <text variable="publisher-place" prefix=", "/>
   </macro>
 
-  <!-- Pages -->
+  <!-- Makro: strony -->
   <macro name="pages">
     <text variable="page"/>
   </macro>
 
-  <!-- In-text citation: only first author's last name and year -->
+  <!-- Cytowanie w tekście -->
   <citation>
     <layout prefix="(" suffix=")" delimiter="; ">
       <group delimiter=", ">
         <names variable="author">
-          <name form="short"
-                and="symbol"
-                et-al-min="100"
-                et-al-use-first="1"
-                initialize-with=""
+          <name form="long"
+                and="text"
                 delimiter=", "
-                delimiter-precedes-last="never"/>
+                delimiter-precedes-last="never"
+                et-al-min="3"
+                et-al-use-first="1"
+                et-al-subsequent-min="3"
+                et-al-subsequent-use-first="1">
+            <et-al term="et-al" font-style="normal" prefix=" i "/> <!-- zamienione na "i in." poniżej -->
+          </name>
           <substitute>
             <text macro="editor"/>
           </substitute>
@@ -78,7 +81,14 @@
     </layout>
   </citation>
 
-  <!-- Bibliography -->
+  <!-- Zamienienie domyślnego "et al." na "i in." -->
+  <locale>
+    <terms>
+      <term name="et-al">i in.</term>
+    </terms>
+  </locale>
+
+  <!-- Bibliografia -->
   <bibliography sort="ascending">
     <sort>
       <key variable="author"/>
